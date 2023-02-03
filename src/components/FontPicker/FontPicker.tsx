@@ -17,16 +17,6 @@ const FontPicker: FC<FontPickerProps> = ({
         return new FontManager(process.env.REACT_APP_API_KEY || '', activeFontFamily, mergedOptions, onChange);
     }, [activeFontFamily, onChange, options]);
 
-    // Extract and sort font list
-    const fonts = Array.from(fontManager.getFonts().values());
-    if (options.sort === 'alphabet') {
-        fonts.sort((font1: Font, font2: Font): number => font1.family.localeCompare(font2.family));
-    }
-
-    const toggleExpanded = () => {
-        setExpanded((exp) => !exp);
-    };
-
     useEffect(() => {
         fontManager
             .init()
@@ -41,6 +31,29 @@ const FontPicker: FC<FontPickerProps> = ({
             });
     });
 
+    // Extract and sort font list
+    const fonts = Array.from(fontManager.getFonts().values());
+    if (options.sort === 'alphabet') {
+        fonts.sort((font1: Font, font2: Font): number => font1.family.localeCompare(font2.family));
+    }
+
+    /**
+     * Set the specified font as the active font in the fontManager and update activeFontFamily in the
+     * state
+     */
+    const setActiveFontFamily = (activeFontFamily: string): void => {
+        fontManager.setActiveFont(activeFontFamily);
+    };
+
+    const toggleExpanded = () => {
+        setExpanded((exp) => !exp);
+    };
+
+    const handleNewFontSelection = (font: Font) => {
+        setActiveFontFamily(font.family);
+        setExpanded(false);
+    };
+
     return (
         <div id={`font-picker${fontManager.selectorSuffix}`} className={expanded ? 'expanded' : ''}>
             <button type='button' className='dropdown-button' onClick={toggleExpanded}>
@@ -52,6 +65,7 @@ const FontPicker: FC<FontPickerProps> = ({
                     fonts={fonts || []}
                     loadingStatus={loadingStatus}
                     selectorSuffix={fontManager.selectorSuffix}
+                    onSelection={handleNewFontSelection}
                 />
             )}
         </div>

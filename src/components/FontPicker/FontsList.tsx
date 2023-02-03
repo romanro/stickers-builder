@@ -1,15 +1,7 @@
-import { Font } from '@samuelmeuli/font-manager';
 import React, { FC, ReactElement } from 'react';
-import { LoadingStatus } from './FontPicker.models';
+import { FontsListProps } from './FontPicker.models';
 import { getFontId } from './FontPicker.utils';
-
-type FontsListProps = {
-    fonts?: Font[];
-    activeFontFamily?: string;
-    selectorSuffix?: string;
-    loadingStatus?: LoadingStatus;
-    onSelection?: (fontFamily: string) => void;
-};
+import { Font } from '@samuelmeuli/font-manager';
 
 const FontsList: FC<FontsListProps> = ({
     fonts = [],
@@ -22,7 +14,11 @@ const FontsList: FC<FontsListProps> = ({
         return null;
     }
 
-    const handleOnClick = () => {};
+    const handleOnClick = (font: Font) => {
+        if (font) {
+            onSelection?.(font);
+        }
+    };
 
     return (
         <ul className='font-list'>
@@ -35,7 +31,7 @@ const FontsList: FC<FontsListProps> = ({
                             type='button'
                             id={`font-button-${fontId}${selectorSuffix}`}
                             className={`font-button ${isActive ? 'active-font' : ''}`}
-                            onClick={handleOnClick}>
+                            onClick={() => handleOnClick(font)}>
                             {font.family}
                         </button>
                     </li>

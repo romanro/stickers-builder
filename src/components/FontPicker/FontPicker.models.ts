@@ -8,3 +8,11 @@ export type FontPickerProps = {
     options?: Partial<Options>;
     onChange?: (font: Font) => void;
 };
+
+export type FontsListProps = {
+    fonts?: Font[];
+    activeFontFamily?: string;
+    selectorSuffix?: string;
+    loadingStatus?: LoadingStatus;
+    onSelection?: FontPickerProps['onChange'];
+};
