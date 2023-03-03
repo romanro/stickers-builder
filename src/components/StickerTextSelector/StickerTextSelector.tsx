@@ -1,10 +1,14 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import { FontPicker } from '../FontPicker/FontPicker';
 import { Font, Options } from '@samuelmeuli/font-manager';
 import { ColorPicker } from '../ColorPicker/ColorPicker';
 import { Color, HEXColor } from '../ColorPicker/ColorPicker.models';
+import { StickerFontSettings } from '../StickerPreview/StickerPreview';
 
-interface StickerTextSelectorProps {}
+type StickerTextSelectorProps = {
+    fontSettings: StickerFontSettings;
+    onTextChange: (fontSettings: StickerFontSettings) => void;
+};
 
 const options: Partial<Options> = {
     families: ['Anton', 'Poppins', 'Roboto'],
@@ -18,22 +22,27 @@ const colors: Color[] = [
     { hex: '#3DA1D2', label: 'Blue' },
 ];
 
-const StickerTextSelector: FC<StickerTextSelectorProps> = (props) => {
-    const [color, setColor] = useState<HEXColor>(colors[2].hex);
-    const [fontFamily, setFontFamily] = useState<string>('Poppins');
+const StickerTextSelector: FC<StickerTextSelectorProps> = ({ onTextChange, fontSettings }) => {
+    const { fontFamily, textColor } = fontSettings;
 
     const onFontSelection = (f: Font) => {
-        setFontFamily(f.family);
+        const fs = { fontFamily: f.family, textColor };
+        onTextChange(fs);
     };
 
     const onColorSelection = (c: HEXColor) => {
-        setColor(c);
+        const fs = { fontFamily, textColor: c };
+        onTextChange(fs);
     };
 
     return (
         <div>
-            <ColorPicker selectedColor={color} colors={colors} onChange={onColorSelection} />
-            <FontPicker activeFontFamily={fontFamily} onChange={onFontSelection} options={options} />
+            <div>
+                <ColorPicker selectedColor={textColor} colors={colors} onChange={onColorSelection} />
+            </div>
+            <div>
+                <FontPicker activeFontFamily={fontFamily} onChange={onFontSelection} options={options} />
+            </div>
         </div>
     );
 };
