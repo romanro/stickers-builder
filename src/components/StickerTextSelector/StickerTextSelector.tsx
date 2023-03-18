@@ -1,32 +1,37 @@
-import React, { FC } from 'react';
-import { FontPicker } from '../FontPicker/FontPicker';
-import { Font, Options } from '@samuelmeuli/font-manager';
+import React, { FC, } from 'react';
 import { ColorPicker } from '../ColorPicker/ColorPicker';
-import { Color, HEXColor } from '../ColorPicker/ColorPicker.models';
+import { HEXColor } from '../ColorPicker/ColorPicker.models';
 import { StickerFontSettings } from '../StickerPreview/StickerPreview';
+import { LocalFontPicker } from '../LocalFontPicker/LocalFontPicker';
+import { FontSettings } from '../../models/Fonts';
+import { colors, fonts } from '../../consts/config.comsts';
 
 type StickerTextSelectorProps = {
+    text: string;
     fontSettings: StickerFontSettings;
     onTextChange: (fontSettings: StickerFontSettings) => void;
 };
 
-const options: Partial<Options> = {
-    families: ['Anton', 'Poppins', 'Roboto'],
-    scripts: ['latin'],
-};
+// const options: Partial<Options> = {
+//     families: ['Anton', 'Poppins', 'Roboto'],
+//     scripts: ['latin'],
+// };
 
-const colors: Color[] = [
-    { hex: '#0D0E11', label: 'Black' },
-    { hex: '#E6E9EE', label: 'White' },
-    { hex: '#B0000D', label: 'Red' },
-    { hex: '#3DA1D2', label: 'Blue' },
-];
 
-const StickerTextSelector: FC<StickerTextSelectorProps> = ({ onTextChange, fontSettings }) => {
+
+const StickerTextSelector: FC<StickerTextSelectorProps> = ({ onTextChange, fontSettings, text }) => {
     const { fontFamily, textColor } = fontSettings;
 
-    const onFontSelection = (f: Font) => {
-        const fs = { fontFamily: f.family, textColor };
+    // const onFontSelection = (f: Font) => {
+    //     const fs = { fontFamily: f.family, textColor };
+    //     onTextChange(fs);
+    // };
+
+
+
+    const onFontSelection = (font: FontSettings) => {
+        const { fontFamily, isCapsOnly } = font;
+        const fs = { fontFamily, isCapsOnly, textColor };
         onTextChange(fs);
     };
 
@@ -36,14 +41,17 @@ const StickerTextSelector: FC<StickerTextSelectorProps> = ({ onTextChange, fontS
     };
 
     return (
-        <div>
-            <div>
+        <>
+            <div className="control">
                 <ColorPicker selectedColor={textColor} colors={colors} onChange={onColorSelection} />
             </div>
-            <div>
+            {/* <div>
                 <FontPicker activeFontFamily={fontFamily} onChange={onFontSelection} options={options} />
+            </div> */}
+            <div className="control">
+                <LocalFontPicker text={text} fonts={fonts} activeFontFamily={fontFamily} onChange={onFontSelection} />
             </div>
-        </div>
+        </>
     );
 };
 

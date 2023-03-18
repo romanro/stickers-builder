@@ -14,7 +14,7 @@ const FontPicker: FC<FontPickerProps> = ({
     const fontManager: FontManager = useMemo(() => {
         const mergedOptions: Options = { ...OPTIONS_DEFAULTS, ...options };
 
-        return new FontManager(process.env.REACT_APP_API_KEY || '', activeFontFamily, mergedOptions, onChange);
+        return new FontManager(process.env.REACT_APP_GFONTS_API_KEY || '', activeFontFamily, mergedOptions, onChange);
     }, [activeFontFamily, onChange, options]);
 
     useEffect(() => {

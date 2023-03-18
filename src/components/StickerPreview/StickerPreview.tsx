@@ -1,31 +1,36 @@
 import React, { FC } from 'react';
 import './StickerPreview.modules.scss';
 import { HEXColor } from '../ColorPicker/ColorPicker.models';
-import { InstagramIcon } from './InstagramIcon';
+import { SupportedFontFamily } from '../../models/Fonts';
+import { SupportedIcon } from './Icons/Icons.models';
+import { Icon } from './Icons/Icon';
 
 export type StickerFontSettings = {
-    fontFamily: string;
+    fontFamily: SupportedFontFamily;
+    isCapsOnly?: boolean;
     textColor: HEXColor;
 };
 
 export type StickerPreviewProps = {
-    showIcon?: boolean;
+    icon?: SupportedIcon;
     text?: string;
     fontSettings: StickerFontSettings;
 };
 
-const StickerPreview: FC<StickerPreviewProps> = ({ showIcon = true, text, fontSettings }) => {
+const StickerPreview: FC<StickerPreviewProps> = ({ text, fontSettings, icon }) => {
     const { fontFamily, textColor } = fontSettings;
     return (
-        <svg xmlns='http://www.w3.org/2000/svg' width='800' height='80'>
-            {showIcon && <InstagramIcon textColor={textColor} />}
-            <text
-                x={showIcon ? '52' : '0'}
-                y='50'
-                style={{ fill: textColor, fontFamily, fontWeight: 600, stroke: 'none', fontSize: 50, lineHeight: 0 }}>
-                {text}
-            </text>
-        </svg>
+        <div className='sticker-preview' style={{ padding: 5 }}>
+            <svg xmlns='http://www.w3.org/2000/svg' width={'100%'} height={45}>
+                {icon && <Icon icon={icon} textColor={textColor} />}
+                <text
+                    x={icon ? '52' : '0'}
+                    y='42'
+                    style={{ fill: textColor, fontFamily, fontWeight: 600, stroke: 'none', fontSize: 48, lineHeight: 1 }}>
+                    {text}
+                </text>
+            </svg>
+        </div>
     );
 };
 

@@ -1,12 +1,17 @@
-import React, { FC, useMemo, useState } from 'react';
+import React, { FC, useMemo, useRef, useState } from 'react';
 import './ColorPicker.modules.scss';
 import { Color, ColorPickerProps } from './ColorPicker.models';
 import { ColorIcon } from './ColorIcon';
+import { useOutsideAlerter } from '../../hooks/useClickOutside';
 
 const ColorPicker: FC<ColorPickerProps> = ({ selectedColor, colors, onChange }) => {
+    const wrapperRef = useRef(null);
+
     const [isOpen, setIsOpen] = useState(false);
 
     const selectedIndex = useMemo(() => colors.findIndex((c) => c.hex === selectedColor), [selectedColor, colors]);
+
+    useOutsideAlerter(wrapperRef, setIsOpen);
 
     const toggle = () => {
         setIsOpen((op) => !op);
@@ -18,7 +23,7 @@ const ColorPicker: FC<ColorPickerProps> = ({ selectedColor, colors, onChange }) 
     };
 
     return (
-        <div className={'container'}>
+        <div className={'container'} ref={wrapperRef}>
             <button className='picker-btn' onClick={toggle}>
                 <ColorIcon color={colors[selectedIndex]} />
                 <p className={`dropdown-icon${isOpen ? ' expanded' : ''}`}></p>

@@ -1,6 +1,17 @@
-(function () {
-    let widget_data;
+document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementsByClassName('variations_form')[0];
+    const iframe = document.getElementById('decal_builder_iframe');
+
+    const setup = {
+        initialState: {
+            fontSettings: {
+                fontFamily: 'Anton',
+                textColor: '#B0000D',
+            },
+            text: 'Example',
+            showIcon: true,
+        },
+    };
 
     const fieldsMap = {
         custom_decal_text: 'text',
@@ -24,7 +35,7 @@
 
     const createInputElement = (name) => {
         const input = document.createElement('input');
-        input.type = 'text';
+        input.type = 'hidden';
         input.name = name;
         input.id = name;
         input.value = '';
@@ -33,15 +44,21 @@
 
     const createCustomDecalForm = () => {
         const parent = document.getElementsByClassName('woocommerce-variation-add-to-cart')[0];
-
         Object.keys(fieldsMap).forEach((field) => parent.appendChild(createInputElement(field)));
     };
 
-    createCustomDecalForm();
+    //  createCustomDecalForm(setup);
 
-    window.addEventListener('message', (m) => {
-        widget_data = { ...JSON.parse(m.data) };
+    const setIframeQueryParams = (params) => {
+        const baseWidgetUrl = iframe.src.split('?')[0];
+        const queryString = Object.keys(params)
+            .map((key) => key + '=' + encodeURIComponent(JSON.stringify(params[key])))
+            .join('&');
 
+        iframe.src = `${baseWidgetUrl}?${queryString}`;
+    };
+
+    const setFormData = (widget_data) => {
         const variation_id = Number(document.getElementsByName('variation_id')[0].value);
 
         const product_variations = JSON.parse(form.getAttribute('data-product_variations'));
@@ -50,10 +67,24 @@
 
         Object.entries(fieldsMap).forEach(([key, value]) => {
             const val = getValue(widget_data, value);
-            setFieldValue(key, val);
-            product_variations[varIndex].attributes[key] = val;
+            if (val) {
+                setFieldValue(key, val);
+                if (product_variations?.[varIndex]?.attributes) {
+                    product_variations[varIndex].attributes[key] = val;
+                }
+            }
         });
 
         form.setAttribute('data-product_variations', JSON.stringify(product_variations));
+    };
+
+    window.addEventListener('message', (m) => {
+        try {
+            const widget_data = { ...JSON.parse(m.data) };
+            setFormData(widget_data);
+        } catch (error) {}
     });
-})();
+
+    setFormData(setup.initialState);
+    setIframeQueryParams(setup);
+});

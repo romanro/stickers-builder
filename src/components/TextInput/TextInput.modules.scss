@@ -1,0 +1,11 @@
+@import '../../styles/variables';
+
+.input-field {
+    height: $control-height;
+    width: $control-width;
+    border: $light-button-border;
+    background: $global-color-8594ebd;
+    color: $global-color-text;
+    font-weight: bold;
+    box-shadow: $control-box-shadow;
+}
