@@ -4,20 +4,19 @@ import { InstagramIcon } from './InstagramIcon';
 import { FacebookIcon } from './FacebookIcon';
 
 export type IconProps = {
-    icon: SupportedIcon
+    icon: SupportedIcon;
 } & IconsProps
 
 
-
-export const Icon: FC<IconProps> = ({ icon, textColor }) => {
+export const Icon: FC<IconProps> = ({ icon, textColor, size = 50 }) => {
 
     if (!icon) {
         return null;
     }
 
     const getIcon: Record<SupportedIcon, ReactNode> = {
-        'instagram': <InstagramIcon textColor={textColor} />,
-        'facebook': <FacebookIcon textColor={textColor} />
+        'instagram': <InstagramIcon textColor={textColor} size={size} />,
+        'facebook': <FacebookIcon textColor={textColor} size={size} />
     }
 
     return (

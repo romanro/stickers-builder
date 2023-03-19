@@ -5,4 +5,5 @@ export * from './StickerPreview/StickerPreview';
 export * from './LocalFontPicker/LocalFontPicker';
 export * from './TextInput/TextInput';
 export * from './IconPicker/IconPicker';
+export * from './StickerSizePicker/StickerSizePicker';
 

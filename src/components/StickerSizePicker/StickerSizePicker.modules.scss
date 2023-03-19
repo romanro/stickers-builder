@@ -1,0 +1,22 @@
+@import '../../styles/variables';
+
+.size-button {
+    border: $light-button-border;
+    background: $global-color-8594ebd;
+    color: $global-color-text;
+    font-weight: bold;
+    padding: 3px;
+    height: $control-height;
+    margin: 0 4px;
+    box-shadow: $control-box-shadow;
+
+    &:hover {
+        background: $global-color-1480f0a;
+    }
+
+    &.selected {
+        background: $global-color-primary;
+        border: $primary-button-border;
+        pointer-events: none;
+    }
+}

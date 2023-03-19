@@ -2,10 +2,12 @@ import './App.scss';
 
 import React, { useEffect, useState } from 'react';
 
-import { StickerFontSettings, StickerPreview, StickerPreviewProps, StickerTextSelector, TextInput, IconPicker } from './components';
+import { StickerFontSettings, StickerPreview, StickerPreviewProps, StickerTextSelector, TextInput, IconPicker, StickerSizePicker } from './components';
 import { Output } from './models/Output';
-import { DEFAULT_FONT_SETTINGS, DEFAULT_ICON, DEFAULT_TEXT } from './consts/text.consts';
+import { DEFAULT_FONT_SETTINGS, DEFAULT_ICON, DEFAULT_SIZE, DEFAULT_TEXT } from './consts/text.consts';
 import { SupportedIcon } from './components/StickerPreview/Icons/Icons.models';
+import { sizes } from './consts/config.consts';
+import { StickerSizeId } from './models/Sticker';
 
 //import WooCommerceRestApi from '@woocommerce/woocommerce-rest-api';
 
@@ -29,6 +31,7 @@ function App() {
     const [fontSettings, setFontSettings] = useState<StickerFontSettings>(DEFAULT_FONT_SETTINGS);
     const [text, setText] = useState(DEFAULT_TEXT);
     const [icon, setIcon] = useState<SupportedIcon | undefined>(DEFAULT_ICON);
+    const [size, setSize] = useState<StickerSizeId>(DEFAULT_SIZE);
 
     const urlParams = new URLSearchParams(window.location.search);
     const initialState = urlParams.get('initialState');
@@ -77,25 +80,32 @@ function App() {
         setText(t);
     }
 
-    const upadteIcon = (icon: SupportedIcon | undefined) => {
+    const updateIcon = (icon: SupportedIcon | undefined) => {
         setIcon(icon);
+    }
+
+    const updateSize = (id: StickerSizeId) => {
+        setSize(id);
     }
 
     return (
         <div className='App'>
-            <StickerPreview icon={icon} text={fontSettings.isCapsOnly ? text.toUpperCase() : text} fontSettings={fontSettings} />
-            <div className="control">
-                <TextInput text={text} onInputChange={updateText} />
+            <div className='column-1'>
+                <StickerPreview size={size} sizes={sizes} icon={icon} text={fontSettings.isCapsOnly ? text.toUpperCase() : text} fontSettings={fontSettings} />
             </div>
-            <div className="control">
-                {/* <label>
-                <input type='checkbox' checked={showIcon} onChange={() => updateIcon(!showIcon)} />
-                Show Instagram logo
-            </label> */}
-                <IconPicker selectedIcon={icon} textColor={fontSettings.textColor} selectIcon={upadteIcon} />
-            </div>
+            <div className='column-2'>
+                <div className="control">
+                    <TextInput text={text} onInputChange={updateText} />
+                </div>
+                <div className="control">
+                    <StickerSizePicker size={size} sizes={sizes} onSizeSelected={updateSize} />
+                </div>
+                <div className="control">
+                    <IconPicker selectedIcon={icon} textColor={fontSettings.textColor} selectIcon={updateIcon} />
+                </div>
 
-            <StickerTextSelector text={text} fontSettings={fontSettings} onTextChange={updateFontSettings} />
+                <StickerTextSelector text={text} fontSettings={fontSettings} onTextChange={updateFontSettings} />
+            </div>
         </div>
 
     );

@@ -4,7 +4,7 @@ import { HEXColor } from '../ColorPicker/ColorPicker.models';
 import { StickerFontSettings } from '../StickerPreview/StickerPreview';
 import { LocalFontPicker } from '../LocalFontPicker/LocalFontPicker';
 import { FontSettings } from '../../models/Fonts';
-import { colors, fonts } from '../../consts/config.comsts';
+import { colors, fonts } from '../../consts/config.consts';
 
 type StickerTextSelectorProps = {
     text: string;

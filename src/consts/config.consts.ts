@@ -1,3 +1,4 @@
+import { StickerSize } from './../models/Sticker';
 import { Color } from '../components/ColorPicker/ColorPicker.models';
 import { SupportedIcon } from '../components/StickerPreview/Icons/Icons.models';
 import { FontSettings } from '../models/Fonts';
@@ -35,3 +36,24 @@ export const fonts: FontSettings[] = [
     }
 
 ]
+
+export const sizes: StickerSize[] = [
+    {
+        id: 'mini',
+        label: 'Mini',
+        iconSize: 250,
+        afterLogoMargin: 30,
+        fontSize: 200,
+        height: 280,
+    },
+    {
+        id: 'standard',
+        label: 'Standard',
+        iconSize: 350,
+        afterLogoMargin: 40,
+        fontSize: 250,
+        height: 390,
+    },
+
+
+];

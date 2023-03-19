@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { icons } from '../../consts/config.comsts';
+import { icons } from '../../consts/config.consts';
 import { Icon } from '../StickerPreview/Icons/Icon';
 import { HEXColor } from '../ColorPicker/ColorPicker.models';
 import './IconPicker.modules.scss';

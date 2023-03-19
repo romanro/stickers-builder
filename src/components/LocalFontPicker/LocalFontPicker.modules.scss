@@ -18,7 +18,10 @@
         padding: 0 10px;
         background: $global-color-8594ebd;
         color: $global-color-text;
+
         .dropdown-font-family {
+            overflow: hidden;
+            white-space: nowrap;
         }
 
         .dropdown-icon {
