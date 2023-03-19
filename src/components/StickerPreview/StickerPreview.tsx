@@ -38,7 +38,7 @@ const StickerPreview: FC<StickerPreviewProps> = ({ size, sizes, text, fontSettin
     }, [containerRef?.current?.offsetWidth])
 
     return (
-        <div className='preview-container' ref={containerRef}>
+        <div className='preview-container' ref={containerRef} style={{ height: (selectedSize?.height || 1) * scaleRatio }}>
             <div className='sticker-preview' style={{
                 position: 'absolute',
                 transform: `scale(${scaleRatio})`,
