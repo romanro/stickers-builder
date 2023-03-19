@@ -3,7 +3,7 @@ import { StickerFontSettings } from '../components/StickerPreview/StickerPreview
 import { SupportedFontFamily } from '../models/Fonts';
 import { StickerSizeId } from '../models/Sticker';
 
-export const DEFAULT_TEXT = 'Your Text Here';
+export const DEFAULT_TEXT = '';
 export const DEFAULT_FONT_FAMILY: SupportedFontFamily = 'applied_sans';
 export const DEFAULT_ICON: SupportedIcon = 'instagram';
 export const DEFAULT_FONT_SETTINGS: StickerFontSettings = {

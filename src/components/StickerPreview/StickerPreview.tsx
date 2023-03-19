@@ -5,6 +5,7 @@ import { SupportedFontFamily } from '../../models/Fonts';
 import { SupportedIcon } from './Icons/Icons.models';
 import { Icon } from './Icons/Icon';
 import { StickerSize, StickerSizeId } from '../../models/Sticker';
+import { lightOrDark } from '../../utils/color.utils';
 
 export type StickerFontSettings = {
     fontFamily: SupportedFontFamily;
@@ -37,6 +38,8 @@ const StickerPreview: FC<StickerPreviewProps> = ({ size, sizes, text, fontSettin
         }
     }, [containerRef?.current?.offsetWidth])
 
+    const isLight = lightOrDark(textColor);
+
     return (
         <div className='preview-container' ref={containerRef} style={{ height: (selectedSize?.height || 1) * scaleRatio }}>
             <div className='sticker-preview' style={{
@@ -44,7 +47,8 @@ const StickerPreview: FC<StickerPreviewProps> = ({ size, sizes, text, fontSettin
                 transform: `scale(${scaleRatio})`,
                 transformOrigin: '0 0',
                 height: selectedSize?.height,
-                padding: 20
+                padding: 20,
+                backgroundColor: isLight ? 'white' : '#54595f'
             }}>
                 <svg xmlns='http://www.w3.org/2000/svg' width={'100%'} height={selectedSize?.iconSize}>
                     {icon && <Icon size={selectedSize?.iconSize} icon={icon} textColor={textColor} />}
@@ -54,7 +58,7 @@ const StickerPreview: FC<StickerPreviewProps> = ({ size, sizes, text, fontSettin
                         height={selectedSize?.fontSize}
                         transform={`translate(0 ${selectedSize?.fontSize})`}
                         style={{ fill: textColor, fontFamily, stroke: 'none', fontSize: selectedSize?.fontSize, lineHeight: 1, fontWeight: 500 }}>
-                        {text}
+                        {text ? text : 'Your text'}
                     </text>
                 </svg>
             </div>

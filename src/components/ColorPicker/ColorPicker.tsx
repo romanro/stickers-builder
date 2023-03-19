@@ -24,7 +24,7 @@ const ColorPicker: FC<ColorPickerProps> = ({ selectedColor, colors, onChange }) 
 
     return (
         <div className='control'>
-            <label className='label'>בחר\י צבע למדבקה</label>
+            <label className='label'>צבע:</label>
             <div className={'container'} ref={wrapperRef}>
                 <button className='picker-btn' onClick={toggle}>
                     <ColorIcon color={colors[selectedIndex]} />

@@ -40,7 +40,7 @@ export const LocalFontPicker: FC<LocalFontPickerProps> = ({ text, fonts, activeF
     }
 
     return <div className='control'>
-        <label className='label'>בחירת גופן</label>
+        <label className='label'>גופן:</label>
         <div ref={wrapperRef} className='font-picker-container'>
             <button type='button' className={`dropdown-button`} onClick={toggleExpanded}>
                 <p className='dropdown-font-family' style={styles}>{displayText}</p>
