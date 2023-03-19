@@ -23,26 +23,29 @@ const ColorPicker: FC<ColorPickerProps> = ({ selectedColor, colors, onChange }) 
     };
 
     return (
-        <div className={'container'} ref={wrapperRef}>
-            <button className='picker-btn' onClick={toggle}>
-                <ColorIcon color={colors[selectedIndex]} />
-                <p className={`dropdown-icon${isOpen ? ' expanded' : ''}`}></p>
-            </button>
-            {isOpen && (
-                <ul className='colors-list'>
-                    {colors.map((color) => (
-                        <li key={color.hex} className='colors-list-item'>
-                            <button
-                                className='colors-list-btn'
-                                onClick={() => {
-                                    handleColorSelect(color);
-                                }}>
-                                <ColorIcon color={color} />
-                            </button>
-                        </li>
-                    ))}
-                </ul>
-            )}
+        <div className='control'>
+            <label className='label'>בחר\י צבע למדבקה</label>
+            <div className={'container'} ref={wrapperRef}>
+                <button className='picker-btn' onClick={toggle}>
+                    <ColorIcon color={colors[selectedIndex]} />
+                    <p className={`dropdown-icon${isOpen ? ' expanded' : ''}`}></p>
+                </button>
+                {isOpen && (
+                    <ul className='colors-list'>
+                        {colors.map((color) => (
+                            <li key={color.hex} className='colors-list-item'>
+                                <button
+                                    className='colors-list-btn'
+                                    onClick={() => {
+                                        handleColorSelect(color);
+                                    }}>
+                                    <ColorIcon color={color} />
+                                </button>
+                            </li>
+                        ))}
+                    </ul>
+                )}
+            </div>
         </div>
     );
 };

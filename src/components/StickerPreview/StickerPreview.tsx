@@ -50,9 +50,10 @@ const StickerPreview: FC<StickerPreviewProps> = ({ size, sizes, text, fontSettin
                     {icon && <Icon size={selectedSize?.iconSize} icon={icon} textColor={textColor} />}
                     <text
                         x={icon && selectedSize ? selectedSize.afterLogoMargin + selectedSize.iconSize : '0'}
-                        y='0'
+                        y={(selectedSize?.fontSize || 12) / 12}
+                        height={selectedSize?.fontSize}
                         transform={`translate(0 ${selectedSize?.fontSize})`}
-                        style={{ fill: textColor, fontFamily, fontWeight: 600, stroke: 'none', fontSize: selectedSize?.fontSize, lineHeight: 1 }}>
+                        style={{ fill: textColor, fontFamily, stroke: 'none', fontSize: selectedSize?.fontSize, lineHeight: 1, fontWeight: 500 }}>
                         {text}
                     </text>
                 </svg>

@@ -4,4 +4,10 @@
 .control {
     padding: 10px;
     display: flex;
+    flex-wrap: wrap;
+    .label {
+        direction: rtl;
+        margin-bottom: 7px;
+        width: 100%;
+    }
 }

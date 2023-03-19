@@ -94,16 +94,9 @@ function App() {
                 <StickerPreview size={size} sizes={sizes} icon={icon} text={fontSettings.isCapsOnly ? text.toUpperCase() : text} fontSettings={fontSettings} />
             </div>
             <div className='column-2'>
-                <div className="control">
-                    <TextInput text={text} onInputChange={updateText} />
-                </div>
-                <div className="control">
-                    <StickerSizePicker size={size} sizes={sizes} onSizeSelected={updateSize} />
-                </div>
-                <div className="control">
-                    <IconPicker selectedIcon={icon} textColor={fontSettings.textColor} selectIcon={updateIcon} />
-                </div>
-
+                <TextInput text={text} onInputChange={updateText} />
+                {/* <StickerSizePicker size={size} sizes={sizes} onSizeSelected={updateSize} />
+                <IconPicker selectedIcon={icon} textColor={fontSettings.textColor} selectIcon={updateIcon} /> */}
                 <StickerTextSelector text={text} fontSettings={fontSettings} onTextChange={updateFontSettings} />
             </div>
         </div>

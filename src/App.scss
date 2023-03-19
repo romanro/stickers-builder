@@ -4,8 +4,14 @@
     padding: 20px;
     direction: rtl;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 100%;
+
+    font-family: 'Assistant', Sans-serif;
+    font-weight: 600;
+    word-spacing: 0.1em;
+
+    color: $global-color-text;
 
     .column-1 {
         position: relative;

@@ -17,11 +17,12 @@ export const IconPicker: FC<IconPickerProps> = ({ textColor, selectedIcon, selec
         return null;
     }
 
-    return <>
+    return <div className="control">
+        <label className='label'>אינסטגרם</label>
         {icons.map(icon => <button className={`icon-button${icon === selectedIcon ? ' selected' : ''}`} key={icon} onClick={() => selectIcon(icon)}>
             <Icon icon={icon} textColor={textColor} />
         </button>)}
         <button className={`icon-button${selectedIcon === undefined ? ' selected' : ''}`} onClick={() => selectIcon(undefined)}>No Icon</button>
-    </>;
+    </div>;
 };
 

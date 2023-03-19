@@ -9,11 +9,13 @@ type StickerSizePickerProps = {
 };
 
 export const StickerSizePicker: FC<StickerSizePickerProps> = ({ size, sizes, onSizeSelected }) => {
-    return <>{sizes.map((s) => {
-        const { label, id } = s;
-        return <button className={`size-button${id === size ? ' selected' : ''}`} onClick={() => onSizeSelected(id)}>{label}</button>
-    })}
-    </>;
+    return <div className="control">
+        <label className='label'> בחר\י את גודל המדבקה</label>
+        {sizes.map((s) => {
+            const { label, id } = s;
+            return <button className={`size-button${id === size ? ' selected' : ''}`} onClick={() => onSizeSelected(id)}>{label}</button>
+        })}
+    </div>;
 };
 
 

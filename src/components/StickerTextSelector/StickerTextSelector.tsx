@@ -42,15 +42,8 @@ const StickerTextSelector: FC<StickerTextSelectorProps> = ({ onTextChange, fontS
 
     return (
         <>
-            <div className="control">
-                <ColorPicker selectedColor={textColor} colors={colors} onChange={onColorSelection} />
-            </div>
-            {/* <div>
-                <FontPicker activeFontFamily={fontFamily} onChange={onFontSelection} options={options} />
-            </div> */}
-            <div className="control">
-                <LocalFontPicker text={text} fonts={fonts} activeFontFamily={fontFamily} onChange={onFontSelection} />
-            </div>
+            <ColorPicker selectedColor={textColor} colors={colors} onChange={onColorSelection} />
+            <LocalFontPicker text={text} fonts={fonts} activeFontFamily={fontFamily} onChange={onFontSelection} />
         </>
     );
 };
