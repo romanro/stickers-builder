@@ -53,6 +53,8 @@ const StickerPreview: FC<StickerPreviewProps> = ({ size, sizes, text, fontSettin
     }, [calculateScaleRatio])
 
 
+    const t = text ? text : DEFAULT_PLACEHOLDER;
+    const displayText = fontSettings.isCapsOnly ? t.toUpperCase() : t;
 
 
     return (
@@ -75,7 +77,7 @@ const StickerPreview: FC<StickerPreviewProps> = ({ size, sizes, text, fontSettin
                         height={selectedSize?.fontSize}
                         transform={`translate(0 ${selectedSize?.fontSize})`}
                         style={{ fill: textColor, fontFamily, stroke: 'none', fontSize: selectedSize?.fontSize, lineHeight: 1, fontWeight: 500 }}>
-                        {text ? text : DEFAULT_PLACEHOLDER}
+                        {displayText}
                     </text>
                 </svg>
             </div>

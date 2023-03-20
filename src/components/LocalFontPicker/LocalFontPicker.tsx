@@ -43,8 +43,8 @@ export const LocalFontPicker: FC<LocalFontPickerProps> = ({ text, fonts, activeF
         <label className='label'>גופן:</label>
         <div ref={wrapperRef} className='font-picker-container'>
             <button type='button' className={`dropdown-button`} onClick={toggleExpanded}>
-                <p className='dropdown-font-family' style={styles}>{displayText}</p>
-                <p className={`dropdown-icon ${expanded ? 'expanded' : ''}`} />
+                <span className='dropdown-font-family' style={styles}>{displayText}</span>
+                <span className={`dropdown-icon ${expanded ? 'expanded' : ''}`} />
             </button>
             {expanded && <LocalFontPickerList text={text} fonts={fonts} onSelectFont={onSelectFont} />}
         </div></div>;

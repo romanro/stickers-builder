@@ -28,7 +28,7 @@ const ColorPicker: FC<ColorPickerProps> = ({ selectedColor, colors, onChange }) 
             <div className={'container'} ref={wrapperRef}>
                 <button className='picker-btn' onClick={toggle}>
                     <ColorIcon color={colors[selectedIndex]} />
-                    <p className={`dropdown-icon${isOpen ? ' expanded' : ''}`}></p>
+                    <span className={`dropdown-icon${isOpen ? ' expanded' : ''}`}></span>
                 </button>
                 {isOpen && (
                     <ul className='colors-list'>

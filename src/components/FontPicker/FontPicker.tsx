@@ -57,8 +57,8 @@ const FontPicker: FC<FontPickerProps> = ({
     return (
         <div id={`font-picker${fontManager.selectorSuffix}`} className={expanded ? 'expanded' : ''}>
             <button type='button' className='dropdown-button' onClick={toggleExpanded}>
-                <p className='dropdown-font-family'>{activeFontFamily}</p>
-                <p className={`dropdown-icon ${loadingStatus}`} />
+                <span className='dropdown-font-family'>{activeFontFamily}</span>
+                <span className={`dropdown-icon ${loadingStatus}`} />
             </button>
             {expanded && (
                 <FontsList

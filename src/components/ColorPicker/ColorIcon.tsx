@@ -7,7 +7,7 @@ export const ColorIcon: FC<ColorIconProps> = ({ color }) => {
     return (
         <div className='color-icon'>
             <div className='color' style={{ background: hex }}></div>
-            {label && <p className='label'>{label}</p>}
+            {label && <span className='label'>{label}</span>}
         </div>
     );
 };

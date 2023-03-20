@@ -91,7 +91,7 @@ function App() {
     return (
         <div className='App'>
             <div className='column-1'>
-                <StickerPreview size={size} sizes={sizes} icon={icon} text={fontSettings.isCapsOnly ? text.toUpperCase() : text} fontSettings={fontSettings} />
+                <StickerPreview size={size} sizes={sizes} icon={icon} text={text} fontSettings={fontSettings} />
             </div>
             <div className='column-2'>
                 <TextInput maxLength={18} text={text} onInputChange={updateText} />
