@@ -25,23 +25,23 @@
             padding: 0;
             margin-left: 10px;
 
-            &::before {
-                display: block;
-                width: 0;
-                height: 0;
-                margin: 0 2px;
-                border-top: 6px solid $global-color-text;
-                border-right: 5px solid transparent;
-                border-left: 5px solid transparent;
-                transition: transform 0.3s;
-                content: '';
-            }
+            // &::before {
+            //     display: block;
+            //     width: 0;
+            //     height: 0;
+            //     margin: 0 2px;
+            //     border-top: 6px solid $global-color-text;
+            //     border-right: 5px solid transparent;
+            //     border-left: 5px solid transparent;
+            //     transition: transform 0.3s;
+            //     content: '';
+            // }
 
-            &.expanded {
-                &::before {
-                    transform: rotate(-180deg);
-                }
-            }
+            // &.expanded {
+            //     &::before {
+            //         transform: rotate(-180deg);
+            //     }
+            // }
         }
     }
 

@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useMemo, useRef, useState } from 'react';
+import React, { FC, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import './StickerPreview.modules.scss';
 import { HEXColor } from '../ColorPicker/ColorPicker.models';
 import { SupportedFontFamily } from '../../models/Fonts';
@@ -6,6 +6,7 @@ import { SupportedIcon } from './Icons/Icons.models';
 import { Icon } from './Icons/Icon';
 import { StickerSize, StickerSizeId } from '../../models/Sticker';
 import { lightOrDark } from '../../utils/color.utils';
+import { DEFAULT_PLACEHOLDER } from '../../consts/text.consts';
 
 export type StickerFontSettings = {
     fontFamily: SupportedFontFamily;
@@ -31,14 +32,23 @@ const StickerPreview: FC<StickerPreviewProps> = ({ size, sizes, text, fontSettin
     const selectedSize = useMemo(() => sizes.find(s => s.id === size)
         , [size, sizes])
 
-    useEffect(() => {
 
+    const isLight = lightOrDark(textColor);
+
+    const calculateScaleRatio = useCallback(() => {
         if (containerRef?.current?.offsetWidth) {
             setScaleRatio(containerRef?.current?.offsetWidth / 3000)
         }
-    }, [containerRef?.current?.offsetWidth])
+    }, [])
 
-    const isLight = lightOrDark(textColor);
+    useEffect(() => {
+        window.addEventListener('resize', calculateScaleRatio);
+        calculateScaleRatio();
+        return () => window.removeEventListener('resize', calculateScaleRatio);
+    }, [])
+
+
+
 
     return (
         <div className='preview-container' ref={containerRef} style={{ height: (selectedSize?.height || 1) * scaleRatio }}>
@@ -48,7 +58,8 @@ const StickerPreview: FC<StickerPreviewProps> = ({ size, sizes, text, fontSettin
                 transformOrigin: '0 0',
                 height: selectedSize?.height,
                 padding: 20,
-                backgroundColor: isLight ? 'white' : '#54595f'
+                backgroundColor: isLight ? 'white' : '#54595f',
+                backgroundSize: `${(20 / scaleRatio)}px`
             }}>
                 <svg xmlns='http://www.w3.org/2000/svg' width={'100%'} height={selectedSize?.iconSize}>
                     {icon && <Icon size={selectedSize?.iconSize} icon={icon} textColor={textColor} />}
@@ -58,7 +69,7 @@ const StickerPreview: FC<StickerPreviewProps> = ({ size, sizes, text, fontSettin
                         height={selectedSize?.fontSize}
                         transform={`translate(0 ${selectedSize?.fontSize})`}
                         style={{ fill: textColor, fontFamily, stroke: 'none', fontSize: selectedSize?.fontSize, lineHeight: 1, fontWeight: 500 }}>
-                        {text ? text : 'Your text'}
+                        {text ? text : DEFAULT_PLACEHOLDER}
                     </text>
                 </svg>
             </div>

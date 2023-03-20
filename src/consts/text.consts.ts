@@ -10,4 +10,5 @@ export const DEFAULT_FONT_SETTINGS: StickerFontSettings = {
     fontFamily: DEFAULT_FONT_FAMILY,
     textColor: '#B0000D',
 }
-export const DEFAULT_SIZE: StickerSizeId = 'standard'
+export const DEFAULT_SIZE: StickerSizeId = 'standard';
+export const DEFAULT_PLACEHOLDER = 'Your text';
