@@ -78,3 +78,16 @@
         }
     }
 }
+
+@media only screen and (max-width: 800px) {
+    .font-picker-container {
+        width: 100%;
+        .dropdown-button {
+            width: 100%;
+        }
+    }
+
+    .font-list {
+        width: 100%;
+    }
+}

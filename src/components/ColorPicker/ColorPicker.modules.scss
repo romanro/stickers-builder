@@ -83,6 +83,7 @@
     .color {
         height: 20px;
         width: 20px;
+        border-radius: 50%;
     }
 
     .label {
@@ -90,5 +91,14 @@
         margin: 0 5px;
         padding: 0;
         flex: 0;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .container {
+        width: 100%;
+        .picker-btn {
+            width: 100%;
+        }
     }
 }

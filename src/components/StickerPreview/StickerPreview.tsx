@@ -4,7 +4,7 @@ import { HEXColor } from '../ColorPicker/ColorPicker.models';
 import { SupportedFontFamily } from '../../models/Fonts';
 import { SupportedIcon } from './Icons/Icons.models';
 import { Icon } from './Icons/Icon';
-import { StickerSize, StickerSizeId } from '../../models/Sticker';
+import { Dimensions, StickerSize, StickerSizeId } from '../../models/Sticker';
 import { lightOrDark } from '../../utils/color.utils';
 import { DEFAULT_PLACEHOLDER } from '../../consts/text.consts';
 
@@ -25,7 +25,8 @@ export type StickerPreviewProps = {
 const StickerPreview: FC<StickerPreviewProps> = ({ size, sizes, text, fontSettings, icon }) => {
     const { fontFamily, textColor } = fontSettings;
 
-    const [scaleRatio, setScaleRatio] = useState<number>(0.1);
+    const [scaleRatio, setScaleRatio] = useState<number>(1);
+    const [detentions, setDetentions] = useState<Dimensions>({ width: 3000, height: 390 });
 
     const containerRef = useRef<HTMLDivElement>(null);
 
@@ -33,11 +34,15 @@ const StickerPreview: FC<StickerPreviewProps> = ({ size, sizes, text, fontSettin
         , [size, sizes])
 
 
-    const isLight = lightOrDark(textColor);
+    const isLight = useMemo(() => lightOrDark(textColor), [textColor]);
 
     const calculateScaleRatio = useCallback(() => {
-        if (containerRef?.current?.offsetWidth) {
-            setScaleRatio(containerRef?.current?.offsetWidth / 3000)
+        const contWidth = containerRef?.current?.offsetWidth;
+        if (contWidth) {
+            const width = (contWidth < 601 ? selectedSize?.mobile.width : selectedSize?.desktop.width) || 3000;
+            const height = (contWidth < 601 ? selectedSize?.mobile.height : selectedSize?.desktop.height) || 290;
+            setDetentions({ width, height });
+            setScaleRatio(contWidth / width);
         }
     }, [])
 
@@ -45,18 +50,19 @@ const StickerPreview: FC<StickerPreviewProps> = ({ size, sizes, text, fontSettin
         window.addEventListener('resize', calculateScaleRatio);
         calculateScaleRatio();
         return () => window.removeEventListener('resize', calculateScaleRatio);
-    }, [])
+    }, [calculateScaleRatio])
 
 
 
 
     return (
-        <div className='preview-container' ref={containerRef} style={{ height: (selectedSize?.height || 1) * scaleRatio }}>
+        <div className='preview-container' ref={containerRef} style={{ height: (detentions.height || 1) * scaleRatio }}>
             <div className='sticker-preview' style={{
                 position: 'absolute',
                 transform: `scale(${scaleRatio})`,
                 transformOrigin: '0 0',
-                height: selectedSize?.height,
+                height: detentions.height,
+                width: detentions.width,
                 padding: 20,
                 backgroundColor: isLight ? 'white' : '#54595f',
                 backgroundSize: `${(20 / scaleRatio)}px`

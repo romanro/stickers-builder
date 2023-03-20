@@ -16,3 +16,9 @@
         font-size: 0.85rem;
     }
 }
+
+@media only screen and (max-width: 800px) {
+    .control {
+        padding: 5px 0;
+    }
+}

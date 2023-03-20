@@ -1,4 +1,9 @@
-export type StickerSizeId = 'mini' | 'standard'
+export type StickerSizeId = 'mini' | 'standard';
+
+export type Dimensions = {
+    height: number;
+    width: number;
+}
 
 export type StickerSize = {
     id: StickerSizeId;
@@ -6,5 +11,7 @@ export type StickerSize = {
     iconSize: number;
     afterLogoMargin: number;
     fontSize: number;
-    height: number;
+    desktop: Dimensions;
+    mobile: Dimensions;
 }
+

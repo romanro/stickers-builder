@@ -14,23 +14,23 @@ export const colors: Color[] = [
 
 export const fonts: FontSettings[] = [
     {
-        displayName: 'Aplied Sans',
+        displayName: 'Font 1',
         charsets: ['latin'],
         fontFamily: 'applied_sans'
     },
     {
-        displayName: 'Hemi Head',
+        displayName: 'Font 2',
         charsets: ['latin'],
         fontFamily: 'hemi_head'
     },
     {
-        displayName: 'IMPACT',
+        displayName: 'Font 3',
         charsets: ['latin'],
         fontFamily: 'impact',
         isCapsOnly: true
     },
     {
-        displayName: 'Poppins',
+        displayName: 'Font 4',
         charsets: ['latin'],
         fontFamily: 'poppins',
     }
@@ -44,7 +44,15 @@ export const sizes: StickerSize[] = [
         iconSize: 250,
         afterLogoMargin: 30,
         fontSize: 200,
-        height: 280,
+        desktop: {
+            height: 280,
+            width: 3000,
+        },
+        mobile: {
+            height: 280,
+            width: 1900,
+        }
+
     },
     {
         id: 'standard',
@@ -52,7 +60,14 @@ export const sizes: StickerSize[] = [
         iconSize: 350,
         afterLogoMargin: 40,
         fontSize: 250,
-        height: 390,
+        desktop: {
+            height: 390,
+            width: 3000,
+        },
+        mobile: {
+            height: 390,
+            width: 1900,
+        }
     },
 
 
