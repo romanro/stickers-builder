@@ -72,8 +72,8 @@ function App() {
 
     }, [fontSettings, text, icon])
 
-    const updateFontSettings = (fontSettings: StickerFontSettings) => {
-        setFontSettings({ ...fontSettings });
+    const updateFontSettings = (fs: StickerFontSettings) => {
+        setFontSettings({ ...fs });
     };
 
     const updateText = (t: string) => {

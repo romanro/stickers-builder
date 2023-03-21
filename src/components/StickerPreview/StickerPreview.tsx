@@ -7,6 +7,7 @@ import { Icon } from './Icons/Icon';
 import { Dimensions, StickerSize, StickerSizeId } from '../../models/Sticker';
 import { lightOrDark } from '../../utils/color.utils';
 import { DEFAULT_PLACEHOLDER } from '../../consts/text.consts';
+import { textCapitalizer } from '../LocalFontPicker/LocalFontPicker.utils';
 
 export type StickerFontSettings = {
     fontFamily: SupportedFontFamily;
@@ -53,8 +54,7 @@ const StickerPreview: FC<StickerPreviewProps> = ({ size, sizes, text, fontSettin
     }, [calculateScaleRatio])
 
 
-    const t = text ? text : DEFAULT_PLACEHOLDER;
-    const displayText = fontSettings.isCapsOnly ? t.toUpperCase() : t;
+    const displayText = textCapitalizer(text || '', DEFAULT_PLACEHOLDER, fontSettings.isCapsOnly);
 
 
     return (

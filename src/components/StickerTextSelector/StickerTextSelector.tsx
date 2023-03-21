@@ -20,7 +20,7 @@ type StickerTextSelectorProps = {
 
 
 const StickerTextSelector: FC<StickerTextSelectorProps> = ({ onTextChange, fontSettings, text }) => {
-    const { fontFamily, textColor } = fontSettings;
+    const { fontFamily, textColor, isCapsOnly = false } = fontSettings;
 
     // const onFontSelection = (f: Font) => {
     //     const fs = { fontFamily: f.family, textColor };
@@ -30,13 +30,13 @@ const StickerTextSelector: FC<StickerTextSelectorProps> = ({ onTextChange, fontS
 
 
     const onFontSelection = (font: FontSettings) => {
-        const { fontFamily, isCapsOnly } = font;
+        const { fontFamily, isCapsOnly = false } = font;
         const fs = { fontFamily, isCapsOnly, textColor };
         onTextChange(fs);
     };
 
     const onColorSelection = (c: HEXColor) => {
-        const fs = { fontFamily, textColor: c };
+        const fs = { fontFamily, textColor: c, isCapsOnly };
         onTextChange(fs);
     };
 
