@@ -6,7 +6,7 @@
     box-shadow: $control-box-shadow;
     width: $control-width;
 
-    .picker-btn {
+    button.picker-btn {
         border: $light-button-border;
         background: none;
         padding: 0;
@@ -58,15 +58,18 @@
         color: $global-color-text;
         box-shadow: $control-box-shadow;
         transition: 0.3s;
+        max-height: 240px;
 
         .colors-list-item {
             display: flex;
             justify-content: flex-start;
 
-            .colors-list-btn {
+            button.colors-list-btn {
                 width: 100%;
                 border: none;
                 padding: 10px;
+                background: $global-color-8594ebd;
+                color: $global-color-text;
 
                 &:hover {
                     background: $global-color-1480f0a;
@@ -90,14 +93,15 @@
         display: inline-block;
         margin: 0 5px;
         padding: 0;
-        flex: 0;
+        flex: 1;
+        text-align: right;
     }
 }
 
 @media only screen and (max-width: 800px) {
     .container {
         width: 100%;
-        .picker-btn {
+        button.picker-btn {
             width: 100%;
         }
     }

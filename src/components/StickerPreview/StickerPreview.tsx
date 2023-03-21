@@ -67,7 +67,7 @@ const StickerPreview: FC<StickerPreviewProps> = ({ size, sizes, text, fontSettin
                 width: detentions.width,
                 padding: 20,
                 backgroundColor: isLight ? 'white' : '#54595f',
-                backgroundSize: `${(20 / scaleRatio)}px`
+                backgroundSize: `${(30 / scaleRatio)}px`
             }}>
                 <svg xmlns='http://www.w3.org/2000/svg' width={'100%'} height={selectedSize?.iconSize}>
                     {icon && <Icon size={selectedSize?.iconSize} icon={icon} textColor={textColor} />}

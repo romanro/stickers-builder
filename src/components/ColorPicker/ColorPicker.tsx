@@ -4,7 +4,9 @@ import { Color, ColorPickerProps } from './ColorPicker.models';
 import { ColorIcon } from './ColorIcon';
 import { useOutsideAlerter } from '../../hooks/useClickOutside';
 
+
 const ColorPicker: FC<ColorPickerProps> = ({ selectedColor, colors, onChange }) => {
+
     const wrapperRef = useRef(null);
 
     const [isOpen, setIsOpen] = useState(false);
@@ -12,6 +14,11 @@ const ColorPicker: FC<ColorPickerProps> = ({ selectedColor, colors, onChange }) 
     const selectedIndex = useMemo(() => colors.findIndex((c) => c.hex === selectedColor), [selectedColor, colors]);
 
     useOutsideAlerter(wrapperRef, setIsOpen);
+
+    if (colors.length === 0) {
+        return null;
+    }
+
 
     const toggle = () => {
         setIsOpen((op) => !op);

@@ -63,14 +63,16 @@
     box-shadow: $control-box-shadow;
     transition: 0.3s;
 
-    .font-list-item {
+    li.font-list-item {
         display: flex;
         justify-content: flex-start;
 
-        .font-list-btn {
+        button.font-list-btn {
             width: 100%;
             border: none;
             padding: 10px;
+            background-color: transparent;
+            color: $global-color-text;
 
             &:hover {
                 background: $global-color-1480f0a;
