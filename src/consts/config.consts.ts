@@ -5,7 +5,7 @@ import { FontSettings } from '../models/Fonts';
 
 export const icons: SupportedIcon[] = ['instagram', 'facebook'];
 
-export const colors: Color[] = [
+export const defaultColors: Color[] = [
     { hex: '#0D0E11', label: 'שחור' },
     { hex: '#FFFFFF', label: 'לבן' },
     { hex: '#B0000D', label: 'אדום' },

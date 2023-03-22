@@ -4,14 +4,16 @@
     position: relative;
     width: 100%;
     height: 100%;
-}
 
-.sticker-preview {
-    position: absolute;
-    border: $secondary-button-border;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    background: url('../../../public/bg.png');
-    background-repeat: repeat;
+    .sticker-preview {
+        position: absolute;
+        border: $secondary-button-border;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        background: url('../../../public/bg.png');
+        background-repeat: repeat;
+        transform-origin: 0 0;
+        padding: 20px;
+    }
 }

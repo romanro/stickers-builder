@@ -4,7 +4,7 @@ import { Color, HEXColor, ServerColor } from '../ColorPicker/ColorPicker.models'
 import { StickerFontSettings } from '../StickerPreview/StickerPreview';
 import { LocalFontPicker } from '../LocalFontPicker/LocalFontPicker';
 import { FontSettings } from '../../models/Fonts';
-import { fonts } from '../../consts/config.consts';
+import { defaultColors, fonts } from '../../consts/config.consts';
 import { useQuery } from 'react-query';
 import API from '../../api/api';
 import { GetAttributeResponse } from '../../api/api.models';
@@ -33,9 +33,11 @@ const StickerTextSelector: FC<StickerTextSelectorProps> = ({ onTextChange, fontS
     //     onTextChange(fs);
     // };
 
-    const { data } = useQuery('getColors', async () => await API.get<GetAttributeResponse<ServerColor[]>>("products/attributes/4/terms", {
+    const { data, isError, error } = useQuery('getColors', async () => await API.get<GetAttributeResponse<ServerColor[]>>("products/attributes/4/terms", {
         per_page: 100,
     }))
+
+
 
     useEffect(() => {
         if (data?.data) {
@@ -44,6 +46,13 @@ const StickerTextSelector: FC<StickerTextSelectorProps> = ({ onTextChange, fontS
 
         }
     }, [data])
+
+    useEffect(() => {
+        if (isError) {
+            console.error(error);
+            setColors(defaultColors);
+        }
+    }, [isError, error]);
 
 
 

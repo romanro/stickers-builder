@@ -5,9 +5,10 @@ import { SupportedFontFamily } from '../../models/Fonts';
 import { SupportedIcon } from './Icons/Icons.models';
 import { Icon } from './Icons/Icon';
 import { Dimensions, StickerSize, StickerSizeId } from '../../models/Sticker';
-import { lightOrDark } from '../../utils/color.utils';
 import { DEFAULT_PLACEHOLDER } from '../../consts/text.consts';
 import { textCapitalizer } from '../LocalFontPicker/LocalFontPicker.utils';
+import { StickerPreviewContainer } from './StickerPreviewContainer';
+
 
 export type StickerFontSettings = {
     fontFamily: SupportedFontFamily;
@@ -27,15 +28,13 @@ const StickerPreview: FC<StickerPreviewProps> = ({ size, sizes, text, fontSettin
     const { fontFamily, textColor } = fontSettings;
 
     const [scaleRatio, setScaleRatio] = useState<number>(1);
-    const [detentions, setDetentions] = useState<Dimensions>({ width: 3000, height: 390 });
+    const [dimensions, setDetentions] = useState<Dimensions>({ width: 3000, height: 390 });
 
     const containerRef = useRef<HTMLDivElement>(null);
 
     const selectedSize = useMemo(() => sizes.find(s => s.id === size)
         , [size, sizes])
 
-
-    const isLight = useMemo(() => lightOrDark(textColor), [textColor]);
 
     const calculateScaleRatio = useCallback(() => {
         const contWidth = containerRef?.current?.offsetWidth;
@@ -58,17 +57,8 @@ const StickerPreview: FC<StickerPreviewProps> = ({ size, sizes, text, fontSettin
 
 
     return (
-        <div className='preview-container' ref={containerRef} style={{ height: (detentions.height || 1) * scaleRatio }}>
-            <div className='sticker-preview' style={{
-                position: 'absolute',
-                transform: `scale(${scaleRatio})`,
-                transformOrigin: '0 0',
-                height: detentions.height,
-                width: detentions.width,
-                padding: 20,
-                backgroundColor: isLight ? 'white' : '#54595f',
-                backgroundSize: `${(30 / scaleRatio)}px`
-            }}>
+        <div className='preview-container' ref={containerRef} style={{ height: (dimensions.height || 1) * scaleRatio }}>
+            <StickerPreviewContainer scaleRatio={scaleRatio} textColor={textColor} dimensions={dimensions}>
                 <svg xmlns='http://www.w3.org/2000/svg' width={'100%'} height={selectedSize?.iconSize}>
                     {icon && <Icon size={selectedSize?.iconSize} icon={icon} textColor={textColor} />}
                     <text
@@ -80,7 +70,7 @@ const StickerPreview: FC<StickerPreviewProps> = ({ size, sizes, text, fontSettin
                         {displayText}
                     </text>
                 </svg>
-            </div>
+            </StickerPreviewContainer>
         </div>
     );
 };
