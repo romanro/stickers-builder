@@ -1,6 +1,6 @@
 import { IncomingHttpHeaders } from 'http2';
 
-export type GetAttributeResponse<T> = {
+export type GetAPIResponse<T> = {
     data: T;
     status: number;
     statusText: string;

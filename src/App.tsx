@@ -9,8 +9,9 @@ import { SupportedIcon } from './components/StickerPreview/Icons/Icons.models';
 import { sizes } from './consts/config.consts';
 import { StickerSizeId } from './models/Sticker';
 
-import WooCommerceRestApi from '@woocommerce/woocommerce-rest-api';
+//import WooCommerceRestApi from '@woocommerce/woocommerce-rest-api';
 import { QueryClient, QueryClientProvider } from 'react-query';
+
 
 
 // const api = new WooCommerceRestApi({
@@ -58,6 +59,9 @@ function App() {
     //         .catch((error) => { console.error(error) });
     // };
 
+
+
+
     useEffect(() => {
         if (initialState) {
             const settings: StickerPreviewProps = JSON.parse(initialState);
@@ -100,7 +104,7 @@ function App() {
                     <StickerPreview size={size} sizes={sizes} icon={icon} text={text} fontSettings={fontSettings} />
                 </div>
                 <div className='column-2'>
-                    <TextInput maxLength={18} text={text} onInputChange={updateText} />
+                    <TextInput maxLength={24} text={text} onInputChange={updateText} />
                     {/* <StickerSizePicker size={size} sizes={sizes} onSizeSelected={updateSize} />
                 <IconPicker selectedIcon={icon} textColor={fontSettings.textColor} selectIcon={updateIcon} /> */}
                     <StickerTextSelector text={text} fontSettings={fontSettings} onTextChange={updateFontSettings} />

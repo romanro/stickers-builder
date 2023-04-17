@@ -5,13 +5,13 @@ export type Dimensions = {
     width: number;
 }
 
+
 export type StickerSize = {
     id: StickerSizeId;
     label: string;
     iconSize: number;
     afterLogoMargin: number;
     fontSize: number;
-    desktop: Dimensions;
-    mobile: Dimensions;
+    size: Dimensions;
 }
 

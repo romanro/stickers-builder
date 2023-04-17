@@ -20,6 +20,6 @@ export const Icon: FC<IconProps> = ({ icon, textColor, size = 50 }) => {
     }
 
     return (
-        < >{getIcon[icon]}</>
+        <div className='icon-holder'>{getIcon[icon]}</div>
     );
 }

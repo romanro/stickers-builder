@@ -25,7 +25,8 @@ export function lightOrDark(color: any) {
     );
 
     // Using the HSP value, determine whether the color is light or dark
-    if (hsp > 150.5) {
+    console.log(hsp)
+    if (hsp > 230) {
 
         return false;
     }

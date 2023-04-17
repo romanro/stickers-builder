@@ -7,7 +7,8 @@ import { FontSettings } from '../../models/Fonts';
 import { defaultColors, fonts } from '../../consts/config.consts';
 import { useQuery } from 'react-query';
 import API from '../../api/api';
-import { GetAttributeResponse } from '../../api/api.models';
+import { GetAPIResponse } from '../../api/api.models';
+import { Product } from '../../models/Product';
 
 type StickerTextSelectorProps = {
     text: string;
@@ -33,19 +34,32 @@ const StickerTextSelector: FC<StickerTextSelectorProps> = ({ onTextChange, fontS
     //     onTextChange(fs);
     // };
 
-    const { data, isError, error } = useQuery('getColors', async () => await API.get<GetAttributeResponse<ServerColor[]>>("products/attributes/4/terms", {
+    const { data, isError, error } = useQuery('getPColors', async () => await API.get<GetAPIResponse<ServerColor[]>>("products/attributes/4/terms", {
         per_page: 100,
-    }))
+    }));
+
+    const { data: product } = useQuery('getProduct', async () => await API.get<GetAPIResponse<Product>>("products/5458", {}));
 
 
 
     useEffect(() => {
-        if (data?.data) {
-            const loadedColors: Color[] = data?.data.map(c => ({ hex: c.description, label: c.name }));
-            setColors(loadedColors);
+        if (data?.data && product?.data) {
+            const prodColors = product.data?.attributes?.find((a) => a.id === 4)?.options;
 
+            if (prodColors) {
+                const loadedColors: Color[] = [];
+                prodColors.forEach(c => {
+                    const color = data?.data.find(d => d.name === c);
+
+                    if (color) {
+                        loadedColors.push({ hex: color.description, label: color.name })
+                    }
+                })
+                setColors(loadedColors);
+            }
         }
-    }, [data])
+
+    }, [data, product])
 
     useEffect(() => {
         if (isError) {

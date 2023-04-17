@@ -37,37 +37,34 @@ export const fonts: FontSettings[] = [
 
 ]
 
+export const DEFAULT_HEIGHT = 261;
+export const DEFAULT_WIDTH = 1018;
+export const DEFAULT_FONT_SIZE = 150;
+
 export const sizes: StickerSize[] = [
     {
         id: 'mini',
         label: 'Mini',
-        iconSize: 250,
-        afterLogoMargin: 30,
-        fontSize: 200,
-        desktop: {
+        iconSize: 152,
+        afterLogoMargin: 10,
+        fontSize: 150,
+        size: {
             height: 280,
             width: 3000,
         },
-        mobile: {
-            height: 280,
-            width: 1900,
-        }
 
     },
     {
         id: 'standard',
         label: 'Standard',
-        iconSize: 350,
-        afterLogoMargin: 40,
-        fontSize: 250,
-        desktop: {
-            height: 390,
-            width: 3000,
+        iconSize: 152,
+        afterLogoMargin: 10,
+        fontSize: DEFAULT_FONT_SIZE,
+        size: {
+            height: DEFAULT_HEIGHT,
+            width: DEFAULT_WIDTH,
         },
-        mobile: {
-            height: 390,
-            width: 1900,
-        }
+
     },
 
 

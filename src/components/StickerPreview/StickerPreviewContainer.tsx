@@ -20,8 +20,7 @@ export const StickerPreviewContainer: FC<StickerPreviewContainerProps> = ({ chil
         transform: `scale(${scaleRatio})`,
         height,
         width,
-        backgroundColor: isLight ? 'white' : '#54595f',
-        backgroundSize: `${(30 / scaleRatio)}px`
+        backgroundColor: isLight ? 'white' : 'rgba(0, 0, 0, 0.5)',
     }}>{children}</div>;
 
 
