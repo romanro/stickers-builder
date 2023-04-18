@@ -8,7 +8,7 @@ import { Dimensions, StickerSize, StickerSizeId } from '../../models/Sticker';
 import { DEFAULT_PLACEHOLDER } from '../../consts/text.consts';
 import { textCapitalizer } from '../LocalFontPicker/LocalFontPicker.utils';
 import { StickerPreviewContainer } from './StickerPreviewContainer';
-import { DEFAULT_FONT_SIZE, DEFAULT_HEIGHT, DEFAULT_WIDTH } from '../../consts/config.consts';
+import { DEFAULT_FONT_SIZE, DEFAULT_HEIGHT, DEFAULT_WIDTH, marginTopFixMapper } from '../../consts/config.consts';
 // import { useQuery } from 'react-query';
 // import API from '../../api/api';
 // import { GetAPIResponse } from '../../api/api.models';
@@ -108,6 +108,7 @@ const StickerPreview: FC<StickerPreviewProps> = ({ size, sizes, text, fontSettin
                             fontSize, fontWeight: 500,
                             transformOrigin: '0 50%',
                             transform: `scale(${textScaleRatio})`,
+                            marginTop: marginTopFixMapper[fontFamily],
                             marginLeft: icon && selectedSize ? selectedSize.afterLogoMargin : 0
                         }}
                         ref={textRef}
