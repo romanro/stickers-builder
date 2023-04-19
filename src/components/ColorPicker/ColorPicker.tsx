@@ -19,7 +19,6 @@ const ColorPicker: FC<ColorPickerProps> = ({ selectedColor, colors, onChange }) 
         return null;
     }
 
-
     const toggle = () => {
         setIsOpen((op) => !op);
     };
@@ -38,19 +37,26 @@ const ColorPicker: FC<ColorPickerProps> = ({ selectedColor, colors, onChange }) 
                     <span className={`dropdown-icon${isOpen ? ' expanded' : ''}`}></span>
                 </button>
                 {isOpen && (
-                    <ul className='colors-list'>
-                        {colors.map((color) => (
-                            <li key={color.hex} className='colors-list-item'>
-                                <button
-                                    className='colors-list-btn'
-                                    onClick={() => {
-                                        handleColorSelect(color);
-                                    }}>
-                                    <ColorIcon color={color} />
-                                </button>
-                            </li>
-                        ))}
-                    </ul>
+                    <div className='colors-modal-overlay' onClick={() => setIsOpen(false)}>
+                        <div className='colors-modal'>
+                            <header className='modal-header'>
+                                <button className='close-button' onClick={() => setIsOpen(false)}>X</button>
+                            </header>
+                            <ul className='colors-list'>
+                                {colors.map((color) => (
+                                    <li key={color.hex} className='colors-list-item'>
+                                        <button
+                                            className='colors-list-btn'
+                                            onClick={() => {
+                                                handleColorSelect(color);
+                                            }}>
+                                            <ColorIcon color={color} />
+                                        </button>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
                 )}
             </div>
         </div>

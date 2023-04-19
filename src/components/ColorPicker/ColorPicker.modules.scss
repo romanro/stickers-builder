@@ -44,39 +44,6 @@
             // }
         }
     }
-
-    .colors-list {
-        list-style: none;
-        position: absolute;
-        z-index: 1;
-        width: 100%;
-        margin: 0;
-        padding: 0;
-        overflow-x: hidden;
-        overflow-y: auto;
-        background: $global-color-8594ebd;
-        color: $global-color-text;
-        box-shadow: $control-box-shadow;
-        transition: 0.3s;
-        max-height: 240px;
-
-        .colors-list-item {
-            display: flex;
-            justify-content: flex-start;
-
-            button.colors-list-btn {
-                width: 100%;
-                border: none;
-                padding: 10px;
-                background: $global-color-8594ebd;
-                color: $global-color-text;
-
-                &:hover {
-                    background: $global-color-1480f0a;
-                }
-            }
-        }
-    }
 }
 
 .color-icon {
@@ -103,6 +70,76 @@
         width: 100%;
         button.picker-btn {
             width: 100%;
+        }
+    }
+}
+
+.colors-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 10000;
+    background: rgba(1, 1, 1, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s;
+
+    .colors-modal {
+        width: 95%;
+        max-width: 500px;
+        height: auto;
+        max-height: 500px;
+        background: $global-color-8594ebd;
+        color: $global-color-text;
+        box-shadow: $control-box-shadow;
+        overflow-x: hidden;
+        overflow-y: auto;
+        .colors-list {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            list-style: none;
+            margin: 0;
+            padding: 10px;
+
+            .colors-list-item {
+                display: flex;
+                justify-content: flex-start;
+
+                button.colors-list-btn {
+                    width: 100%;
+                    border: none;
+                    padding: 10px;
+                    background: $global-color-8594ebd;
+                    color: $global-color-text;
+
+                    &:hover {
+                        background: $global-color-1480f0a;
+                    }
+
+                    .color-icon {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-around;
+                        align-items: center;
+                        width: 90px;
+                        .color {
+                            height: 40px;
+                            width: 40px;
+                            border-radius: 50%;
+                        }
+
+                        .label {
+                            display: block;
+                            padding: 0;
+                            text-align: center;
+                        }
+                    }
+                }
+            }
         }
     }
 }
