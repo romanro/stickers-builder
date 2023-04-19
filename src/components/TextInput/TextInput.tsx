@@ -13,13 +13,13 @@ export const TextInput: FC<TextInputProps> = ({ text, onInputChange, maxLength }
     const [remaining, setRemaining] = useState<number>(maxLength);
 
     const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const value = e.currentTarget.value;
+        const value = e.currentTarget.value.replace(/[^A_Za-z0-9]/gi, '');;
 
         if (value) {
             setRemaining(maxLength - value.length)
         }
 
-        onInputChange(e.target.value);
+        onInputChange(value);
 
     }
 
