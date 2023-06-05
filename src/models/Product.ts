@@ -5,3 +5,5 @@ export type Product = {
     name: string,
     attributes: Attribute[]
 }
+
+export const PRODUCT_ID = 5551;

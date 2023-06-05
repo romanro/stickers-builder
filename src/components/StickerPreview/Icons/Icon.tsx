@@ -16,7 +16,8 @@ export const Icon: FC<IconProps> = ({ icon, textColor, size = 50 }) => {
 
     const getIcon: Record<SupportedIcon, ReactNode> = {
         'instagram': <InstagramIcon textColor={textColor} size={size} />,
-        'facebook': <FacebookIcon textColor={textColor} size={size} />
+        'facebook': <FacebookIcon textColor={textColor} size={size} />,
+        'none': false
     }
 
     return (

@@ -1,0 +1,65 @@
+@import '../../styles/variables';
+
+.addButton {
+    padding: 8px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: $global-color-primary;
+    color: $global-color-01684c4;
+    border: 1px solid $global-color-primary;
+    width: $control-width;
+    margin-top: 10px !important;
+    cursor: pointer;
+
+    &:hover {
+        border: 1px solid $ast-global-color-0;
+        background-color: $ast-global-color-0;
+    }
+
+    &.disabled {
+        pointer-events: none;
+        cursor: default;
+        opacity: 0.5;
+    }
+
+    span {
+        display: block;
+        font-size: 1.3rem;
+        font-weight: 600;
+        margin: 0 5px;
+    }
+}
+
+.ldsDualRing {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+
+    &:after {
+        content: ' ';
+        display: block;
+        width: 20px;
+        height: 20px;
+        margin: 0;
+        border-radius: 50%;
+        border: 2px solid #fff;
+        border-color: #fff transparent #fff transparent;
+        animation: lds-dual-ring 1.2s linear infinite;
+    }
+}
+
+@keyframes lds-dual-ring {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .addButton {
+        width: 100%;
+    }
+}

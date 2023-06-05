@@ -3,6 +3,7 @@ import './ColorPicker.modules.scss';
 import { ColorIconProps } from './ColorPicker.models';
 
 export const ColorIcon: FC<ColorIconProps> = ({ color }) => {
+    if (!color) return null;
     const { hex, label } = color;
     return (
         <div className='color-icon'>

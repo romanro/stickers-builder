@@ -23,7 +23,7 @@ export type StickerFontSettings = {
 export type StickerPreviewProps = {
     size: StickerSizeId;
     sizes: StickerSize[];
-    icon?: SupportedIcon;
+    icon: SupportedIcon;
     text?: string;
     fontSettings: StickerFontSettings;
 };

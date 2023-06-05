@@ -20,6 +20,10 @@ abstract class API {
         return this.wooApi.get(endpoint, params);
     }
 
+    static post<T>(endpoint: string, data: any, params?: any): Promise<T> {
+        return this.wooApi.post(endpoint, data, params);
+    }
+
 
 
 }

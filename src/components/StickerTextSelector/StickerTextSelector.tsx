@@ -57,6 +57,8 @@ const StickerTextSelector: FC<StickerTextSelectorProps> = ({ onTextChange, fontS
                 })
                 setColors(loadedColors);
             }
+        } else {
+            setColors(defaultColors);
         }
 
     }, [data, product])

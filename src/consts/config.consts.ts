@@ -5,12 +5,21 @@ import { FontSettings, SupportedFontFamily } from '../models/Fonts';
 
 export const icons: SupportedIcon[] = ['instagram', 'facebook'];
 
+
 export const defaultColors: Color[] = [
-    { hex: '#0D0E11', label: 'שחור' },
-    { hex: '#FFFFFF', label: 'לבן' },
-    { hex: '#B0000D', label: 'אדום' },
-    { hex: '#3DA1D2', label: 'כחול' },
-];
+    { label: "אדום", hex: "#b0000d" },
+    { label: "ורוד", hex: "#ed84b6" },
+    { label: "ירוק מט", hex: "#c9dd60" },
+    { label: "כסוף", hex: "#C3C3C3" },
+    { label: "לבן", hex: "#FFFFFF" },
+    { label: "נחושת מט", hex: "#8c7234" },
+    { label: "צהוב", hex: "#fec500" },
+    { label: "שחור", hex: "#0d0e11" },
+    { label: "שחור מט", hex: "#292a2c" },
+    { label: "תכלת", hex: "#3da1d2" },
+    { label: "כחול רויאל", hex: "#1114EB" },
+    { label: "כתום", hex: "#F15719" }
+]
 
 export const fonts: FontSettings[] = [
     {
